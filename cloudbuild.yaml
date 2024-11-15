@@ -1,0 +1,15 @@
+steps:
+  - id: Build the image
+    name: gcr.io/cloud-builders/docker
+    args:
+      - build
+      - -t=$_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
+      - .
+  - id: Push the image to Artifact Registry
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - $_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
+
+images:
+  - $_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
