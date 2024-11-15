@@ -16,12 +16,11 @@ steps:
     args:
       - deploy
       - rollouts
-      - create
+      - advance
       - v1.0.0
       - --delivery-pipeline=hello-app
       - --region=europe-west1
-      - --release=hello-app-v1.0.0
-      - --target=hello-tst
+      - --release=hello-tst
       - --annotations="buildId=$BUILD_ID"
       - --labels=commitSha=$COMMIT_SHA
 
