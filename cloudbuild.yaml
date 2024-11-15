@@ -13,3 +13,7 @@ steps:
 
 images:
   - $_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
+
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+  logStreamingOption: STREAM_ON
