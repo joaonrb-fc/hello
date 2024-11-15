@@ -16,7 +16,8 @@ steps:
     args:
       - deploy
       - rollouts
-      - create=v1.0.0
+      - create
+      - v1.0.0
       - --delivery-pipeline=hello-app
       - --region=europe-west1
       - --release=hello-app-v1.0.0
