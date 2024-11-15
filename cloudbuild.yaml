@@ -10,6 +10,19 @@ steps:
     args:
       - push
       - $_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
+  - id: Roulout the release to the test environment
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
+    entrypoint: gcloud
+    args:
+      - deploy
+      - rollouts
+      - create=v1.0.0
+      - --delivery-pipeline=hello-app
+      - --region=europe-west1
+      - --release=hello-app-v1.0.0
+      - --target=hello-tst
+      - --annotations="buildId=$BUILD_ID"
+      - --labels=commitSha=$COMMIT_SHA
 
 images:
   - $_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
