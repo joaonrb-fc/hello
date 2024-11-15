@@ -17,7 +17,7 @@ steps:
       - deploy
       - rollouts
       - advance
-      - v1.0.0
+      - hello-app
       - --delivery-pipeline=hello-app
       - --region=europe-west1
       - --release=hello-tst
