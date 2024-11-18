@@ -17,7 +17,7 @@ steps:
       - deploy
       - releases
       - create
-      - v1.0.0
+      - v1-0-0
       - --delivery-pipeline=hello-app
       - --region=europe-west1
       - --to-target=hello-tst
