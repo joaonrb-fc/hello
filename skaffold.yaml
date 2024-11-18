@@ -1,0 +1,12 @@
+apiVersion: skaffold/v2beta31
+kind: Config
+metadata:
+  name: hello-cloud-deploy
+deploy:
+  cloudrun: {}
+build:
+  artifacts:
+    - image: hello-cloud-deploy
+      context: .
+      docker:
+        dockerfile: Dockerfile
