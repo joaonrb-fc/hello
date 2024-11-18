@@ -1,41 +1,29 @@
 steps:
-  - id: Deploy service using skaffold
-    name: gcr.io/k8s-skaffold/skaffold:v2.13.2
-    entrypoint: 'bash'
+  - id: Build the image
+    name: gcr.io/cloud-builders/docker
     args:
-      - -c
-      - |
-        skaffold run \
-          --default-repo=$_GCR_HOSTNAME/$PROJECT_ID \
-          --label=commitSha=$COMMIT_SHA \
-          --cloud-run-project=joaonrb-e5-cloud-deploy \
-          --cloud-run-location=europe-west1
+      - build
+      - -t=$_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
+      - .
+  - id: Push the image to Artifact Registry
+    name: gcr.io/cloud-builders/docker
+    args:
+      - push
+      - $_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
+  - id: Create a new release to the test environment
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
+    entrypoint: gcloud
+    args:
+      - deploy
+      - releases
+      - create
+      - $COMMIT_SHA
+      - --delivery-pipeline=hello-app
+      - --region=europe-west1
+      - --to-target=hello-tst
 
-#  - id: Build the image
-#    name: gcr.io/cloud-builders/docker
-#    args:
-#      - build
-#      - -t=$_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
-#      - .
-#  - id: Push the image to Artifact Registry
-#    name: gcr.io/cloud-builders/docker
-#    args:
-#      - push
-#      - $_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
-#  - id: Roulout the release to the test environment
-#    name: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
-#    entrypoint: gcloud
-#    args:
-#      - deploy
-#      - rollouts
-#      - advance
-#      - hello-app
-#      - --delivery-pipeline=hello-app
-#      - --region=europe-west1
-#      - --release=hello-tst
-#
-#images:
-#  - $_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
+images:
+  - $_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
