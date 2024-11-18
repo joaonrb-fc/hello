@@ -7,7 +7,9 @@ steps:
       - |
         skaffold run \
           --default-repo=$_GCR_HOSTNAME/$PROJECT_ID \
-          --label=commitSha=$COMMIT_SHA
+          --label=commitSha=$COMMIT_SHA \
+          --cloud-run-project=joaonrb-e5-cloud-deploy \
+          --cloud-run-location=europe-west1
 
 #  - id: Build the image
 #    name: gcr.io/cloud-builders/docker
