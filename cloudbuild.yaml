@@ -1,6 +1,6 @@
 steps:
   - id: Deploy service using skaffold
-    name: gcr.io/k8s-skaffold/skaffold:v2.0.0
+    name: gcr.io/k8s-skaffold/skaffold:v2.13.2
     entrypoint: 'bash'
     args:
       - -c
