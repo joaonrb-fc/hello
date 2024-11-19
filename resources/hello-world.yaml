@@ -1,0 +1,9 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hello-world
+spec:
+  template:
+    spec:
+      containers:
+        - image: europe-west1-docker.pkg.dev/joaonrb-e5-cloud-deploy/sandbox/joaonrb-e5-cloud-deploy/hello
