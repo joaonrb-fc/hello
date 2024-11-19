@@ -6,7 +6,7 @@ steps:
       - deploy
       - rollouts
       - advance
-      - hello-release
+      - hello-release-$SHORT_SHA
       - --delivery-pipeline=hello-world
       - --region=europe-west1
       - --release=hello-stg

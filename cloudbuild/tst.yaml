@@ -3,13 +3,13 @@ steps:
     name: gcr.io/cloud-builders/docker
     args:
       - build
-      - -t=$_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
+      - -t=$_GCR_HOSTNAME/$PROJECT_ID/hello:$SHORT_SHA
       - .
   - id: Push the image to Artifact Registry
     name: gcr.io/cloud-builders/docker
     args:
       - push
-      - $_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
+      - $_GCR_HOSTNAME/$PROJECT_ID/hello:$SHORT_SHA
   - id: Create a new release to the test environment
     name: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
     entrypoint: gcloud
@@ -17,13 +17,13 @@ steps:
       - deploy
       - releases
       - create
-      - hello-release
+      - hello-release-$SHORT_SHA
       - --delivery-pipeline=hello-world
       - --region=europe-west1
       - --to-target=hello-tst
 
 images:
-  - $_GCR_HOSTNAME/$PROJECT_ID/hello:$COMMIT_SHA
+  - $_GCR_HOSTNAME/$PROJECT_ID/hello:$SHORT_SHA
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
