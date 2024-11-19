@@ -3,7 +3,7 @@ steps:
     name: gcr.io/cloud-builders/docker
     args:
       - build
-      - -t=$_GCR_HOSTNAME/$PROJECT_ID/hello:$SHORT_SHA
+      - -t=$_GCR_HOSTNAME/$PROJECT_ID/sandbox/hello:$SHORT_SHA
       - .
   - id: Push the image to Artifact Registry
     name: gcr.io/cloud-builders/docker
