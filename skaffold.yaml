@@ -1,12 +1,19 @@
 apiVersion: skaffold/v4beta11
 kind: Config
 metadata:
-  name: hello
-deploy:
-  cloudrun: {}
+  name: my-cloud-run-service
 build:
   artifacts:
-    - image: hello
+    - image: europe-west1-docker.pkg.dev/joaonrb-e5-cloud-deploy/sandbox/joaonrb-e5-cloud-deploy/hello
       context: .
-      docker:
-        dockerfile: Dockerfile
+deploy:
+  googleCloud:
+    projectId: joaonrb-e5-cloud-deploy
+    region: europe-west1
+    services:
+      my-service: # Replace with your service name
+        type: cloudrun
+        autoDeploy: true
+        flags:
+          use-http2: true # Optional: Enable HTTP/2
+          allow-unauthenticated: true # Optional: Allow unauthenticated requests
