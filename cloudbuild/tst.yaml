@@ -18,7 +18,7 @@ steps:
       - releases
       - create
       - hello-release
-      - --delivery-pipeline=hello-app
+      - --delivery-pipeline=hello-world
       - --region=europe-west1
       - --to-target=hello-tst
 

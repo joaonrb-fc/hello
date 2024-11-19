@@ -7,7 +7,7 @@ steps:
       - rollouts
       - advance
       - hello-release
-      - --delivery-pipeline=hello-app
+      - --delivery-pipeline=hello-world
       - --region=europe-west1
       - --release=hello-stg
 
