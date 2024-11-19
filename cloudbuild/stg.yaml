@@ -1,0 +1,16 @@
+steps:
+  - id: Create a new release to the test environment
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
+    entrypoint: gcloud
+    args:
+      - deploy
+      - rollouts
+      - advance
+      - hello-release-$SHORT_SHA
+      - --delivery-pipeline=hello-world
+      - --region=europe-west1
+      - --release=hello-world-stg
+
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+  logStreamingOption: STREAM_ON

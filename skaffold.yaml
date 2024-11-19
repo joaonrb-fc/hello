@@ -1,12 +1,27 @@
 apiVersion: skaffold/v4beta11
 kind: Config
-metadata:
-  name: hello
+manifests:
+  rawYaml:
+    - resources/*
+#metadata:
+#  name: hello-world
+#build:
+#  artifacts:
+#    - image: europe-west1-docker.pkg.dev/joaonrb-e5-cloud-deploy/sandbox/joaonrb-e5-cloud-deploy/hello
+#      context: .
 deploy:
-  cloudrun: {}
-build:
-  artifacts:
-    - image: hello
-      context: .
-      docker:
-        dockerfile: Dockerfile
+  cloudrun:
+    projectid: joaonrb-e5-cloud-deploy
+    region: europe-west1
+#    services:
+#      hello-world:
+#        type: cloudrun
+#        autoDeploy: true
+#        flags:
+#          use-http2: true # Optional: Enable HTTP/2
+#          allow-unauthenticated: true # Optional: Allow unauthenticated requests
+#
+#portForward:
+#  - resourceType: service
+#    resourceName: hello-world
+#    localPort: 8080
