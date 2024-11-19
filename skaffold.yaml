@@ -11,7 +11,7 @@ deploy:
     projectId: joaonrb-e5-cloud-deploy
     region: europe-west1
     services:
-      my-service: # Replace with your service name
+      hello-world:
         type: cloudrun
         autoDeploy: true
         flags:
