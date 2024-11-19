@@ -9,7 +9,7 @@ steps:
     name: gcr.io/cloud-builders/docker
     args:
       - push
-      - $_GCR_HOSTNAME/$PROJECT_ID/hello:$SHORT_SHA
+      - $_GCR_HOSTNAME/$PROJECT_ID/sandbox/hello:$SHORT_SHA
   - id: Create a new release to the test environment
     name: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
     entrypoint: gcloud
@@ -23,7 +23,7 @@ steps:
       - --to-target=hello-world-tst
 
 images:
-  - $_GCR_HOSTNAME/$PROJECT_ID/hello:$SHORT_SHA
+  - $_GCR_HOSTNAME/$PROJECT_ID/sandbox/hello:$SHORT_SHA
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
