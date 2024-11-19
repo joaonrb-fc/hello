@@ -50,5 +50,6 @@ options:
 
 artifacts:
   objects:
+    location: gs://joaonrb-e5-cloud-deploy-terraform/artifacts
     paths:
       - resources/*
