@@ -20,14 +20,14 @@ steps:
       - | 
         mkdir resources
         echo "apiVersion: serving.knative.dev/v1" > resources/hello-world.yaml
-        echo "  kind: Service" >> resources/hello-world.yaml
-        echo "  metadata:" >> resources/hello-world.yaml
-        echo "    name: hello-world" >> resources/hello-world.yaml
-        echo "  spec:" >> resources/hello-world.yaml
-        echo "    template:" >> resources/hello-world.yaml
-        echo "      spec:" >> resources/hello-world.yaml
-        echo "        containers:" >> resources/hello-world.yaml
-        echo "          - image: $_GCR_HOSTNAME/$PROJECT_ID/sandbox/hello:$SHORT_SHA" >> resources/hello-world.yaml
+        echo "kind: Service" >> resources/hello-world.yaml
+        echo "metadata:" >> resources/hello-world.yaml
+        echo "  name: hello-world" >> resources/hello-world.yaml
+        echo "spec:" >> resources/hello-world.yaml
+        echo "  template:" >> resources/hello-world.yaml
+        echo "    spec:" >> resources/hello-world.yaml
+        echo "      containers:" >> resources/hello-world.yaml
+        echo "        - image: $_GCR_HOSTNAME/$PROJECT_ID/sandbox/hello:$SHORT_SHA" >> resources/hello-world.yaml
 
   - id: Create a new release to the test environment
     name: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
