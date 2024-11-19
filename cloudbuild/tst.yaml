@@ -20,7 +20,7 @@ steps:
       - hello-release-$SHORT_SHA
       - --delivery-pipeline=hello-world
       - --region=europe-west1
-      - --to-target=hello-tst
+      - --to-target=hello-world-tst
 
 images:
   - $_GCR_HOSTNAME/$PROJECT_ID/hello:$SHORT_SHA

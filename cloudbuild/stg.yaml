@@ -9,7 +9,7 @@ steps:
       - hello-release-$SHORT_SHA
       - --delivery-pipeline=hello-world
       - --region=europe-west1
-      - --release=hello-stg
+      - --release=hello-world-stg
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
