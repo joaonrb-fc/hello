@@ -47,3 +47,8 @@ images:
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
   logStreamingOption: STREAM_ON
+
+artifacts:
+  objects:
+    paths:
+      - resources/*
