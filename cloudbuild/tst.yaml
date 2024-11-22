@@ -45,7 +45,7 @@ images:
   - $_IMAGE_URL
 
 substitutions:
-  _IMAGE_URL: $_GCR_HOSTNAME/$PROJECT_ID/sandbox/hello:$SHORT_SHA
+  _IMAGE_URL: "$_GCR_HOSTNAME/$PROJECT_ID/sandbox/hello:$SHORT_SHA"
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
