@@ -1,10 +1,21 @@
 ---
 
 substitutions:
-  _IMAGE_URL: "$_GCR_HOSTNAME/$PROJECT_ID/sandbox/hello:$SHORT_SHA"
+  _IMAGE_NAME: "${_GCR_HOSTNAME}/${PROJECT_ID}/sandbox/hello:${SHORT_SHA}"
 
 images:
   - $_IMAGE_URL
+
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
+  logStreamingOption: STREAM_ON
+  dynamicSubstitutions: true
+
+artifacts:
+  objects:
+    location: gs://joaonrb-e5-cloud-deploy-terraform/artifacts
+    paths:
+      - resources/*
 
 steps:
   - id: Build the image
@@ -48,14 +59,3 @@ steps:
       - --delivery-pipeline=hello-world
       - --region=europe-west1
       - --to-target=hello-world-tst
-
-options:
-  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
-  logStreamingOption: STREAM_ON
-  dynamicSubstitutions: true
-
-artifacts:
-  objects:
-    location: gs://joaonrb-e5-cloud-deploy-terraform/artifacts
-    paths:
-      - resources/*
