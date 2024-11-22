@@ -12,10 +12,10 @@ artifacts:
       - resources/*
 
 substitutions:
-  _IMAGE_NAME: "europe-west1-docker.pkg.dev/${PROJECT_ID}/sandbox/hello:${SHORT_SHA}"
+  _IMAGE_NAME: "${_GCR_HOSTNAME}/${PROJECT_ID}/sandbox/hello:${SHORT_SHA}"
 
 images:
-  - _IMAGE_NAME
+  - $_IMAGE_NAME
 
 steps:
   - id: Build the image
