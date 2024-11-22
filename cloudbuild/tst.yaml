@@ -22,14 +22,14 @@ steps:
     name: gcr.io/cloud-builders/docker
     args:
       - build
-      - -t=_IMAGE_NAME
+      - -t=$_IMAGE_NAME
       - .
 
   - id: Push the image to Artifact Registry
     name: gcr.io/cloud-builders/docker
     args:
       - push
-      - _IMAGE_NAME
+      - $_IMAGE_NAME
 
   - id: Generate service configuration file
     name: gcr.io/cloud-builders/docker
@@ -46,7 +46,7 @@ steps:
         echo "  template:" >> resources/hello-world.yaml
         echo "    spec:" >> resources/hello-world.yaml
         echo "      containers:" >> resources/hello-world.yaml
-        echo "        - image: _IMAGE_NAME" >> resources/hello-world.yaml
+        echo "        - image: $_IMAGE_NAME" >> resources/hello-world.yaml
 
   - id: Create a new release to the test environment
     name: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
