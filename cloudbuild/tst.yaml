@@ -1,3 +1,11 @@
+---
+
+substitutions:
+  _IMAGE_URL: "$_GCR_HOSTNAME/$PROJECT_ID/sandbox/hello:$SHORT_SHA"
+
+images:
+  - $_IMAGE_URL
+
 steps:
   - id: Build the image
     name: gcr.io/cloud-builders/docker
@@ -40,12 +48,6 @@ steps:
       - --delivery-pipeline=hello-world
       - --region=europe-west1
       - --to-target=hello-world-tst
-
-images:
-  - $_IMAGE_URL
-
-substitutions:
-  _IMAGE_URL: "$_GCR_HOSTNAME/$PROJECT_ID/sandbox/hello:$SHORT_SHA"
 
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
