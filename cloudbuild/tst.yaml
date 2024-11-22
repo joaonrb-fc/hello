@@ -52,6 +52,7 @@ steps:
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
   logStreamingOption: STREAM_ON
+  dynamicSubstitutions: true
 
 artifacts:
   objects:
