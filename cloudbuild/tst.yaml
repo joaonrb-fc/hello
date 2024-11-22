@@ -1,11 +1,5 @@
 ---
 
-substitutions:
-  _IMAGE_NAME: "${_GCR_HOSTNAME}/${PROJECT_ID}/sandbox/hello:${SHORT_SHA}"
-
-images:
-  - _IMAGE_NAME
-
 options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
   logStreamingOption: STREAM_ON
@@ -16,6 +10,12 @@ artifacts:
     location: gs://joaonrb-e5-cloud-deploy-terraform/artifacts
     paths:
       - resources/*
+
+substitutions:
+  _IMAGE_NAME: "${_GCR_HOSTNAME}/${PROJECT_ID}/sandbox/hello:${SHORT_SHA}"
+
+images:
+  - _IMAGE_NAME
 
 steps:
   - id: Build the image
